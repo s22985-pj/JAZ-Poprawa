@@ -22,9 +22,4 @@ public class NBPRestController {
         return ResponseEntity.ok(nbpService.obliczZloto(waluta, startDate, endDate));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<String> getById(@PathVariable Long id){
-        return ResponseEntity.ok(nbpService.getID(id));
-    }
-
 }

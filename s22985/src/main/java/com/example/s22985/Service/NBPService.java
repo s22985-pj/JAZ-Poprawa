@@ -15,17 +15,14 @@ public class NBPService {
     private final NBPRepository nbpRepository;
     private final RestTemplate restTemplate;
 
-    public NBPService(NBPRepository nbpRepository) {
+    public NBPService(NBPRepository nbpRepository, RestTemplate restTemplate) {
         this.nbpRepository = nbpRepository;
         this.restTemplate = restTemplate;
     }
 
-    public String getCurrencies() {
-        ResponseEntity<String> response = restTemplate.getForEntity("http://api.nbp.pl/api/exchangerates/tables/a/", String.class);
-        return response.getBody();
-    }
 
-    public String getGoldValue(String code, String startDate, String endDate) {
+
+    public String obliczZloto(String code, String startDate, String endDate) {
         ResponseEntity<String> goldValue = restTemplate.getForEntity("http://api.nbp.pl/api/cenyzlota"
                 + "/" + startDate + "/" + endDate + "/", String.class);
         ResponseEntity<String> currency = restTemplate.getForEntity("http://api.nbp.pl/api/exchangerates/rates/a/" + code
@@ -33,3 +30,4 @@ public class NBPService {
 
         return " " + currency;
     }
+}
