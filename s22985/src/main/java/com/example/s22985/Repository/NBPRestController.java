@@ -16,10 +16,16 @@ public class NBPRestController {
         this.nbpService = nbpService;
     }
 
-    @GetMapping("/zloto/{waluta}/{startDate}/{endDate}")
-    public ResponseEntity<String> zloto(@PathVariable String waluta, @PathVariable String startDate,
-                                        @PathVariable String endDate) throws JsonProcessingException {
-        return ResponseEntity.ok(nbpService.obliczZloto(waluta, startDate, endDate));
+
+    @GetMapping("/zloto/{waluta}/{dataPoczatkowa}/{dataKoncowa}")
+    public ResponseEntity<String> zloto(@PathVariable String waluta, @PathVariable String dataPoczatkowa,
+                                        @PathVariable String dataKoncowa) throws JsonProcessingException {
+        return ResponseEntity.ok(nbpService.obliczZloto(waluta, dataPoczatkowa, dataKoncowa));
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<String> getById(@PathVariable Long id){
+        return ResponseEntity.ok(nbpService.getID(id));
+    }
+
 
 }
